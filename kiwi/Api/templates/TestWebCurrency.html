@@ -1,0 +1,72 @@
+<html>
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<script>
+
+
+function process(first,second,value)
+{
+  $.ajax({
+  url: 'http://localhost:5000/currency/'+first,
+  dataType: 'json',
+  success: function(data) {
+		$.each(data, function(index, element) {
+					 if(second ==="EUR" && index === "ValueToEuro" )
+					 {
+					 	multiply(value,element)
+					 	return 0
+					 }
+					 if(second ==="CZK" && index === "ValueToKoruna" )
+					 {
+					 	multiply(value,element)
+					 	return 0
+					 }					 
+					 if(second ==="PLN" && index === "ValueToZloty" )
+					 {
+					 	multiply(value,element)
+					 	return 0
+					 }	
+					 if(second ==="USD" && index === "ValueToDollar" )
+					 {
+					 	multiply(value,element)
+					 	return 0
+					 }
+		        });
+		        return "error";
+  }
+});
+}
+
+function Calculate()
+{
+	first=$( "#first option:selected" ).text();
+	second=$( "#second option:selected" ).text();
+	value=$('#value').val();
+	process(first,second,value);
+}
+
+function multiply(value,index)
+{
+	document.getElementById("result").innerHTML = value*index;
+}
+</script>
+	<input type="text" id="value" value="0">
+	<select id="first">
+		<option>EUR</option>
+		<option>USD</option>
+		<option>PLN</option>
+		<option>CZK</option>
+	</select> to
+	<select id="second">
+		<option>EUR</option>
+		<option>USD</option>
+		<option>PLN</option>
+		<option>CZK</option>
+	</select>
+	<button onclick="Calculate()">Process</button>
+	<strong><p id="result" style="background-color:powderblue;"></p></strong>
+</body>
+</html>
