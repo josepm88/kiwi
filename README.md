@@ -13,7 +13,7 @@ and redis every day at 12:00 makes a API query to openexchangerates.org, you nee
 then stores into Api/jsonCurrencies.json. The way to start the schedule task is going to the project path using the console
 prompt and execute:
 
-# celery -A TaskJsonGenerator worker -B -l info
+$ celery -A TaskJsonGenerator worker -B -l info
 
 part 2) Api, It works with flask framework, and generates the API with the right format for the currency exchanges  
 Czech koruna, Euro, Polish złoty and US dollar. it works on the port 5000. Once you execute the python script, the flask
